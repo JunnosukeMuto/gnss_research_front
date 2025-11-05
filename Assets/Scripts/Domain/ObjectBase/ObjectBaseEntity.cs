@@ -20,7 +20,7 @@ namespace Assets.Scripts.Domain.ObjectBase
         public float QuatW { get; set; }
         public string GridId { get; set; }
 
-        ObjectBaseEntity(int id, int authorId, Vector3 xyz, Vector4 quat, string gridId)
+        public ObjectBaseEntity(Vector3 xyz, Vector4 quat, int authorId, string gridId, int id = 0)
         {
             Id = id;
             AuthorId = authorId;
