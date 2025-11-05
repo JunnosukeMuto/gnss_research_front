@@ -9,6 +9,6 @@ namespace Assets.Scripts.Domain.Comment
     internal interface ICommentRepository
     {
         Task<CommentEntity?> FindByIdAsync(int id);
-        Task<CommentEntity?> FindByGridIdAsync(int gridId);
+        Task<CommentEntity?> FindByGridIdAsync(string gridId);
     }
 }

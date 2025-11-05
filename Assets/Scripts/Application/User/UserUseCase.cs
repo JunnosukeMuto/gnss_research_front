@@ -20,5 +20,10 @@ namespace Assets.Scripts.Application.User
         {
             throw new NotImplementedException();
         }
+
+        public bool Register(string username, string email, string password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

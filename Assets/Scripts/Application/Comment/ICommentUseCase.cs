@@ -9,6 +9,7 @@ namespace Assets.Scripts.Application.Comment
 {
     internal interface ICommentUseCase
     {
+        // TODO: いまいちコメントのユースケース（処理の流れ）が見えてこないので一旦View側に着手する
         // CommentEntity.Idはサーバ側で決めるのでここでは0にする
         Task<bool> CreateCommentAsync(CommentEntity comment);
 

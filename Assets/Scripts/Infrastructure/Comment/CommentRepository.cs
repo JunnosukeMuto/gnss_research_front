@@ -9,7 +9,7 @@ namespace Assets.Scripts.Infrastructure.Comment
 {
     internal class CommentRepository : ICommentRepository
     {
-        public async Task<CommentEntity> FindByGridIdAsync(int gridId)
+        public async Task<CommentEntity> FindByGridIdAsync(string gridId)
         {
             throw new NotImplementedException();
         }

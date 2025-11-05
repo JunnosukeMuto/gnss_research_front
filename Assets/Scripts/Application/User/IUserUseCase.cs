@@ -11,6 +11,7 @@ namespace Assets.Scripts.Application.User
     {
         UserEntity? CurenntUser { get; }
         bool Login(string email, string password);
+        bool Register(string username, string email, string password);
         bool Logout();
     }
 }
