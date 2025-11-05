@@ -9,5 +9,14 @@ namespace Assets.Scripts.Infrastructure.GNSS
 {
     internal class GNSSAdapter : IGNSSAdapter
     {
+        public void SocketClose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SocketConnect()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

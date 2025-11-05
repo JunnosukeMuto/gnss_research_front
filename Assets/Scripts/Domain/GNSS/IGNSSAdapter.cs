@@ -8,5 +8,7 @@ namespace Assets.Scripts.Domain.GNSS
 {
     internal interface IGNSSAdapter
     {
+        void SocketConnect();
+        void SocketClose();
     }
 }
