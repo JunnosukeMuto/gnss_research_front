@@ -2,20 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using UniRx;
+using Zenject;
 
 namespace Assets.Scripts.Application.Comment
 {
     internal interface ICommentUseCase
     {
-        // TODO: いまいちコメントのユースケース（処理の流れ）が見えてこないので一旦View側に着手する
-        // CommentEntity.Idはサーバ側で決めるのでここでは0にする
-        Task<bool> CreateCommentAsync(CommentEntity comment);
+        IReadOnlyReactiveProperty<Vector3> XYZ { get; }
+        IReadOnlyReactiveProperty<Vector4> Quat { get; }
+        IReadOnlyReactiveProperty<string> GridID { get; }
+        IReadOnlyReactiveProperty<string> Text { get; }
 
-        // CommentEntity.Idに更新したいコメントのIDを入れる
-        Task<bool> UpdateCommentAsync(CommentEntity comment);
-        Task<bool> DeleteCommentAsync(int id);
-        Task<CommentEntity[]> GetCommentsAroundAsync(int GridId);
+        void UpdateComment(string gridId, Vector3 xyz, Vector4 quat, string text);
+
+        // CreateCommentAsync()でコメントを空間に表示、SubmitCommentAsync()で作った/更新したコメントをサーバに送信
+        Task<bool> SubmitCommentAsync();
     }
 }

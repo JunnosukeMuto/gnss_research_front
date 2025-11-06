@@ -26,8 +26,8 @@ namespace Assets.Scripts.Domain.Comment
             }
         }
 
-        public CommentEntity(Vector3 xyz, Vector4 quat, int authorId, string gridId, string text, int id = 0)
-            : base(xyz, quat, authorId, gridId, id)
+        public CommentEntity(int id, int authorId, string gridId, Vector3 xyz, Vector4 quat,  string text)
+            : base(id, authorId, gridId, xyz, quat)
         {
             Text = text;
         }

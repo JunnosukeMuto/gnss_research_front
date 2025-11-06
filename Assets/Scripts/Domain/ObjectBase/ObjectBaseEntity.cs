@@ -9,29 +9,26 @@ namespace Assets.Scripts.Domain.ObjectBase
 {
     internal class ObjectBaseEntity
     {
-        public int Id { get; init; }
-        public int AuthorId { get; init; }
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-        public float QuatX { get; set; }
-        public float QuatY { get; set; }
-        public float QuatZ { get; set; }
-        public float QuatW { get; set; }
+        public int Id { get; set; }
+        public int AuthorId { get; set; }
         public string GridId { get; set; }
+        public Vector3 XYZ { get; set; }
+        public Vector4 Quat { get; set; }
+        public float X => XYZ.X;
+        public float Y => XYZ.Y;
+        public float Z => XYZ.Z;
+        public float QuatX => Quat.X;
+        public float QuatY => Quat.Y;
+        public float QuatZ => Quat.Z;
+        public float QuatW => Quat.W;
 
-        public ObjectBaseEntity(Vector3 xyz, Vector4 quat, int authorId, string gridId, int id = 0)
+        public ObjectBaseEntity(int id, int authorId, string gridId, Vector3 xyz, Vector4 quat)
         {
             Id = id;
             AuthorId = authorId;
-            X = xyz.X;
-            Y = xyz.Y;
-            Z = xyz.Z;
-            QuatX = quat.X;
-            QuatY = quat.Y;
-            QuatZ = quat.Z;
-            QuatW = quat.W;
             GridId = gridId;
+            XYZ = xyz;
+            Quat = quat;
         }
     }
 }
