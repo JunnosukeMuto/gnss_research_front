@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Domain.Comment;
+using Assets.Scripts.Domain.GNSS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +16,24 @@ namespace Assets.Scripts.Application.Comment
     {
         private CommentEntity _comment;
 
+        private ReactiveProperty<int> _id = new();
         private ReactiveProperty<string> _gridId = new();
-        private ReactiveProperty<Vector3> _xyz = new();
+        private ReactiveProperty<GNSSLocation> _location = new();
         private ReactiveProperty<Vector4> _quat = new();
         private ReactiveProperty<string> _text = new();
 
+        public IReadOnlyReactiveProperty<int> Id => _id;
         public IReadOnlyReactiveProperty<string> GridID => _gridId;
-        public IReadOnlyReactiveProperty<Vector3> XYZ => _xyz;
+        public IReadOnlyReactiveProperty<GNSSLocation> Location => _location;
         public IReadOnlyReactiveProperty<Vector4> Quat => _quat;
         public IReadOnlyReactiveProperty<string> Text => _text;
 
         public CommentUseCase(CommentEntity comment)
         {
             _comment = comment;
+            _id.Value = comment.Id;
             _gridId.Value = comment.GridId;
-            _xyz.Value = comment.XYZ;
+            _location.Value = comment.Location;
             _quat.Value = comment.Quat;
             _text.Value = comment.Text;
         }
@@ -39,12 +43,18 @@ namespace Assets.Scripts.Application.Comment
             throw new NotImplementedException();
         }
 
-        public void UpdateComment(string gridId, Vector3 xyz, Vector4 quat, string text)
+        public void UpdateComment(string gridId, GNSSLocation location, Vector4 quat, string text)
         {
             throw new NotImplementedException();
         }
 
         // Zenjectの自動生成Factory。TransientなUseCaseを実現する。
-        public class Factory : PlaceholderFactory<CommentEntity, CommentUseCase> { }
+        public class Factory : PlaceholderFactory<CommentEntity, CommentUseCase>, ICommentUseCase.IFactory
+        {
+            ICommentUseCase ICommentUseCase.IFactory.Create(CommentEntity comment)
+            {
+                return Create(comment);
+            }
+        }
     }
 }

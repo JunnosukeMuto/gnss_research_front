@@ -4,24 +4,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniRx;
+using Zenject;
 
 namespace Assets.Scripts.Application.User
 {
     internal class UserUseCase : IUserUseCase
     {
-        public UserEntity CurenntUser { get => throw new NotImplementedException(); private set => throw new NotImplementedException(); }
+        [Inject] private readonly IUserRepository _userRepository;
 
-        public bool Login(string email, string password)
+        private UserEntity _currentUser;
+
+        private ReactiveProperty<int> _id = new();
+        private ReactiveProperty<string> _name = new();
+
+        public IReadOnlyReactiveProperty<int> Id => _id;
+        public IReadOnlyReactiveProperty<string> Name => _name;
+
+        public async Task<UserEntity> Login(string email, string password)
+        {
+            try
+            {
+                UserEntity found = await _userRepository.FindByEmail(email, password);
+                _currentUser = found;
+                _id.Value = found.Id;
+                _name.Value = found.Name;
+                return found;
+            }
+            catch
+            {
+                throw new ArgumentException("メールアドレスかパスワードのどちらかが間違っています");
+            }
+        }
+
+        public async Task Logout()
         {
             throw new NotImplementedException();
         }
 
-        public bool Logout()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Register(string username, string email, string password)
+        public async Task<UserEntity> Register(string username, string email, string password)
         {
             throw new NotImplementedException();
         }

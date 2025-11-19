@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Domain.GNSS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -11,23 +12,15 @@ namespace Assets.Scripts.Domain.ObjectBase
     {
         public int Id { get; set; }
         public int AuthorId { get; set; }
-        public string GridId { get; set; }
-        public Vector3 XYZ { get; set; }
+        public string GridId => Location.CalcGridId();
+        public GNSSLocation Location { get; set; }
         public Vector4 Quat { get; set; }
-        public float X => XYZ.X;
-        public float Y => XYZ.Y;
-        public float Z => XYZ.Z;
-        public float QuatX => Quat.X;
-        public float QuatY => Quat.Y;
-        public float QuatZ => Quat.Z;
-        public float QuatW => Quat.W;
 
-        public ObjectBaseEntity(int id, int authorId, string gridId, Vector3 xyz, Vector4 quat)
+        public ObjectBaseEntity(int id, int authorId, GNSSLocation location, Vector4 quat)
         {
             Id = id;
             AuthorId = authorId;
-            GridId = gridId;
-            XYZ = xyz;
+            Location = location;
             Quat = quat;
         }
     }

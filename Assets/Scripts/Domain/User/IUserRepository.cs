@@ -8,8 +8,9 @@ namespace Assets.Scripts.Domain.User
 {
     internal interface IUserRepository
     {
-        Task<UserEntity?> FindById(int id);
-        Task<UserEntity?> FindByEmail(string email);
-        Task<UserEntity?> RegisterUser(string username, string email, string password);
+        Task<UserEntity> Create(string username, string email, string password);   // サーバでIDが付与されて返ってくる
+        Task Delete(int id, string password);
+        Task<UserEntity> FindById(int id, string password);
+        Task<UserEntity> FindByEmail(string email, string password);
     }
 }

@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Application.Comment
 {
+    // 責務：コメントの動的生成、保持
     internal interface ICommentManager
     {
-        // CommentEntity.Idはサーバに登録したものの空間とまだ送信していないローカル上のものの空間を分ける
+        // CommentEntity.Idはサーバに登録したidとまだ送信していないローカル上のidのアドレス空間を分ける
         // でないとサーバに登録していないコメントをDeleteできない
         void CreateComment(CommentEntity comment);
 
         // idがサーバ空間だったらDB処理を実行するのでasync
-        Task<bool> DeleteCommentAsync(int id);
+        Task DeleteCommentAsync(int id);
     }
 }

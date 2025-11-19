@@ -8,7 +8,9 @@ namespace Assets.Scripts.Domain.Comment
 {
     internal interface ICommentRepository
     {
-        Task<CommentEntity?> FindByIdAsync(int id);
-        Task<CommentEntity?> FindByGridIdAsync(string gridId);
+        Task<CommentEntity> Create(CommentEntity comment);  // サーバでIDが付与されて返ってくる
+        Task Delete(int id);
+        Task<CommentEntity> FindByIdAsync(int id);
+        Task<CommentEntity[]> FindByGridIdAsync(string gridId);
     }
 }

@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UniRx;
 
-namespace Assets.Scripts.Presentation.Comment
+namespace Assets.Scripts.Domain.VR
 {
-    internal interface ICommentViewModel
+    internal interface IVRAdapter
     {
-        IReadOnlyReactiveProperty<int> Id { get; }
+        IReadOnlyReactiveProperty<System.Numerics.Vector3> Position { get; }
 
     }
 }

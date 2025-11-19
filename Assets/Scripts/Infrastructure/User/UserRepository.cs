@@ -9,19 +9,25 @@ namespace Assets.Scripts.Infrastructure.User
 {
     internal class UserRepository : IUserRepository
     {
-        public async Task<UserEntity> FindByEmail(string email)
+        public Task<UserEntity> Create(string username, string email, string password)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<UserEntity> FindById(int id)
+        public Task Delete(int id, string password)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<UserEntity> RegisterUser(string username, string email, string password)
+        public async Task<UserEntity> FindByEmail(string email, string password)
         {
             throw new NotImplementedException();
         }
+
+        public async Task<UserEntity> FindById(int id, string password)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

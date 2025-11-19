@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Domain.ObjectBase;
+﻿using Assets.Scripts.Domain.GNSS;
+using Assets.Scripts.Domain.ObjectBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace Assets.Scripts.Domain.Comment
             }
         }
 
-        public CommentEntity(int id, int authorId, string gridId, Vector3 xyz, Vector4 quat,  string text)
-            : base(id, authorId, gridId, xyz, quat)
+        public CommentEntity(int id, int authorId, GNSSLocation location, Vector4 quat, string text)
+            : base(id, authorId, location, quat)
         {
             Text = text;
         }

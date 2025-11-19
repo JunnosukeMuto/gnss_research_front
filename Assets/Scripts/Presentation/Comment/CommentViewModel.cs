@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Application.Comment;
+using Assets.Scripts.Domain.GNSS;
+using Assets.Scripts.Domain.VR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,8 @@ namespace Assets.Scripts.Presentation.Comment
 
         public TextMeshProUGUI textMesh;
 
+        public IReadOnlyReactiveProperty<int> Id => _useCase.Id;
+
         private void Start()
         {
             _useCase.Text
@@ -29,6 +33,11 @@ namespace Assets.Scripts.Presentation.Comment
         private void OnDestroy()
         {
             _disposables.Dispose();
+        }
+
+        public void OnClick()
+        {
+            // TODO: コメント編集/削除機能
         }
     }
 }
